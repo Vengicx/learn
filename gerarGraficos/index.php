@@ -1,9 +1,7 @@
 <?php
 include "phplot.php";
 include "contrib/data_table.php";
-$diretorioFuncoes = $_SERVER['DOCUMENT_ROOT']."/common/function"; // Dir dos arquivos
-$arrayExcecoes = array(); // * Coloque aqui os arquivos que você quer que não sejam incluidos
-
+include "contrib/data_table.php";
 
 
 # Indicamos o título do gráfico e o título dos dados no eixo X e Y do mesmo
