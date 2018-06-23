@@ -15,24 +15,37 @@
     		height: 150px; /*deixa com um limite máximo de altura para aparecer as informações */
     	}
 
-    	.btn-drop {
-    		border: 2px solid #000fff; /*deixa o input com bordinha */
+    	.btn-search {
+    		border-radius: 0;
     	}
 
     	#procurar {
     		display: none;
     	}
 
+    	.btn-search{
+  			margin: 0;
+			overflow: visible;
+			text-transform: none;
+    		outline: auto #0062cc !important;
+		}
+
+
+
+
+
 	</style>
   </head>
   <body>
+<div class="container">
 <div class="btn-group">
-	<input type="text" class="btn btn-drop" placeholder="Procurar.." id="procurar" onkeyup="filterFunction()">
-    <button type="button" class="btn btn-secondary dropdown-toggle-split" id="dropdownMenuReference" id="botao" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">Selecione</button>
-    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent"> <!-- faz com que o dropdown não vá para a direita -->
+	<input type="text" class="btn btn-search" placeholder="Procurar.." id="procurar" onkeyup="filterFunction()">
+    <button type="button" class="btn btn-primary dropdown-toggle-split" id="botao" onclick="searchShow()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">Selecione</button>
+    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownarrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent"> <!-- faz com que o dropdown não vá para a direita -->
     </button>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference" id="genero">
+		
 		<a class="dropdown-item" href="#Metal">Metal</a>
 		<a class="dropdown-item" href="#Pop">Pop</a>
 		<a class="dropdown-item" href="#Rock">Rock</a>		    
@@ -45,15 +58,18 @@
 		<a class="dropdown-item" href="#JRock">J-Rock</a>
   	</div>
 </div>
-
+</div>
 
 <script>
-	procurar.style.display: 'block';
+	function searchShow() {
+		
+
+	}
 
 	function filterFunction() {
 	    var input, filter, ul, li, a, i; //declara variaveis
 	    input = document.getElementById("procurar"); //pega o input com o id "procurar"
-	    procurar.style.display = "none";
+	    
 	    filter = input.value.toUpperCase(); //pega o valor que está lá, transforma em maiusculo
 	    div = document.getElementById("genero"); //pega a div toda
 	    a = div.getElementsByTagName("a"); //pega os valores que estão com a tag "a" dentro da div

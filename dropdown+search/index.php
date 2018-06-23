@@ -19,15 +19,18 @@
     		border: 2px solid #000fff; /*deixa o input com bordinha */
     	}
 
+
+
 	</style>
   </head>
   <body>
+	<button class="btn btn-primary" onclick="mostrarClasse()" type="button">Mostrar classe</button>
 	<div class="dropdown">
   		<button class="btn btn-primary dropdown-toggle" type="button" onclick="myFunction()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="botao">
     		Gênero Musical
   		</button>
 		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="genero">
-		  	<input type="text" class="btn btn-drop" placeholder="Procurar.." id="procurar" onkeyup="filterFunction()">
+		  	<input type="text" class="btn btn-search" placeholder="Procurar.." id="procurar" onkeyup="filterFunction()">
 		    <a class="dropdown-item" href="#Metal">Metal</a>
 		    <a class="dropdown-item" href="#Pop">Pop</a>
 		    <a class="dropdown-item" href="#Rock">Rock</a>		    
@@ -45,6 +48,7 @@
 	//     document.getElementById("genero").classList.toggle("show");
 	// }
 
+
 	function filterFunction() {
 	    var input, filter, ul, li, a, i; //declara variaveis
 	    input = document.getElementById("procurar"); //pega o input com o id "procurar"
@@ -61,6 +65,7 @@
 	        }
 	    }
 	}
+
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>

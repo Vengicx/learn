@@ -63,16 +63,16 @@
 
 <div class="dropdown">
 <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <a href="#about">About</a>
-    <a href="#base">Base</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
-    <a href="#custom">Custom</a>
-    <a href="#support">Support</a>
-    <a href="#tools">Tools</a>
-  </div>
+    <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <a href="#about">About</a>
+        <a href="#base">Base</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+        <a href="#custom">Custom</a>
+        <a href="#support">Support</a>
+        <a href="#tools">Tools</a>
+    </div>
 </div>
 
 <script>
@@ -80,7 +80,14 @@
 toggle between hiding and showing the dropdown content */
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
+    var dropdown = element.getElementByClassName("show");
+    if (dropdown == (style.display == "block")) {
+        alert("Está aberto");
+    }else{
+        alert("Está fechado");
+    }
 }
+
 
 function filterFunction() {
     var input, filter, ul, li, a, i;
@@ -96,6 +103,7 @@ function filterFunction() {
         }
     }
 }
+
 </script>
 
 </body>
