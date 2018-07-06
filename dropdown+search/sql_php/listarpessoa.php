@@ -2,7 +2,7 @@
 	
 	include "conecta.php";
 
-	$consulta = $pdo->prepare("select * from pessoa");
+	$consulta = $pdo->prepare("select * from pessoa order by nome");
 	$consulta->execute();
 
 	while ($dados = $consulta->fetch(PDO::FETCH_OBJ)){
