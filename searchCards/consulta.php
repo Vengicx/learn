@@ -1,18 +1,29 @@
 <?php
     require "conecta.php";
+    
+    if(isset($_POST["procurar"])){
+        $nome = $_POST["procurar"];
+    }
 
-    $consulta = $pdo->prepare("SELECT * FROM pessoa");
+    if(isset($nome)){
+        $consulta = $pdo->prepare("SELECT * FROM pessoa WHERE nome LIKE '%$nome%");
+
+    }else{
+        $consulta = $pdo->prepare("SELECT * FROM pessoa order by nome");
+    }
+
     $consulta->execute();
 
     while($dados = $consulta->fetch(PDO::FETCH_OBJ)){
         $id = $dados->id;
         $nome = $dados->nome;
-        $foto = $dados->foto;
+        //$foto = $dados->foto;
+        //<img class='card-img-top' src='../arquivos/$foto' alt='$foto'>
         $cargo = $dados->cargo;
         $cpf = $dados->cpf;
         
-        echo "<div class='card' datanome='$nome' style='width: 18rem;'>
-                <img class='card-img-top' src='../arquivos/$foto' alt='$foto'>
+        echo "<div class='card' style='width: 18rem;'>
+                
                 <div class='card-body'>
                     <h5 class='card-title'>$nome</h5>
                     <p class='card-text'>ID: $id</p>
@@ -21,6 +32,7 @@
                     <a href='#' class='btn btn-primary'>Legal!</a>
                 </div>
             </div>";
+        
     
 }
 
