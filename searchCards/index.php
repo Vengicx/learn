@@ -29,57 +29,55 @@ integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJ
 <body>
   <div class="container">
     <h1 class="text-center">Selecione a pessoa</h1>
-    <button type="button" class="btn btn-info info" data-toggle="modal" data-target="#exampleModalCenter">Clique Aqui</button>
-    <form class="form-inline my-2 my-lg-0" action="consulta.php">
-      <input class="form-control mr-sm-2" type="search" placeholder="Digite aqui" aria-label="Search" id="procurar">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="filterFunction()">Procurar</button>
+    
+    <form class="form-inline my-2 my-lg-0" action="#" method="post">
+      <input class="form-control mr-sm-2" type="search" placeholder="Digite aqui" aria-label="Search" name="procurar">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar</button>
     </form>
+    
     </div>
     <div id="conteudo">
-        <?php
-            include "consulta.php";
+      <?php
+        require "conecta.php";
+        
+        if(isset($_POST["procurar"])){
+            $nome = trim ($_POST["procurar"]);
+            $nome = "%$nome%";
+        }
+
+        if(isset($nome)){
+            $consulta = $pdo->prepare("SELECT * FROM pessoa WHERE nome LIKE ?");
+            $consulta->bindParam(1, $nome);
+
+        }else{ 
+            $consulta = $pdo->prepare("SELECT * FROM pessoa order by nome");
+
+        }
+
+        $consulta->execute();
+
+        while($dados = $consulta->fetch(PDO::FETCH_OBJ)){
+            $id = $dados->id;
+            $nome = $dados->nome;
+            //$foto = $dados->foto;
+            //<img class='card-img-top' src='../arquivos/$foto' alt='$foto'>
+            $cargo = $dados->cargo;
+            $cpf = $dados->cpf;
+            
+            echo "<div class='card' style='width: 18rem;'>
+                    <div class='card-body'>
+                        <h5 class='card-title'>$nome</h5>
+                        <p class='card-text'>ID: $id</p>
+                        <p class='card-text'>CPF: $cpf</p>
+                        <p class='card-text'>Cargo: $cargo</p>
+                        <a href='#' class='btn btn-primary'>Legal!</a>
+                    </div>
+                </div>";  
+        
+        }
         ?>
     </div>
 
-
-
-
-
-<!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">O que eu estou fazendo aqui?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            É um 'search' para filtrar os cards de pessoa (ou produto) que aparecerá na tela, puxados pelo banco de dados.
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, entendi</button>
-        </div>
-        </div>
-    </div>
-    </div>
-    <script>
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>

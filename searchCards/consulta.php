@@ -2,14 +2,17 @@
     require "conecta.php";
     
     if(isset($_POST["procurar"])){
-        $nome = $_POST["procurar"];
+        $nome = trim ($_POST["procurar"]);
+        $nome = "%$nome%";
     }
 
     if(isset($nome)){
-        $consulta = $pdo->prepare("SELECT * FROM pessoa WHERE nome LIKE '%$nome%");
+        $consulta = $pdo->prepare("SELECT * FROM pessoa WHERE nome LIKE ?");
+        $consulta->bindParam(1, $nome);
 
-    }else{
+    }else{ 
         $consulta = $pdo->prepare("SELECT * FROM pessoa order by nome");
+
     }
 
     $consulta->execute();
@@ -23,7 +26,6 @@
         $cpf = $dados->cpf;
         
         echo "<div class='card' style='width: 18rem;'>
-                
                 <div class='card-body'>
                     <h5 class='card-title'>$nome</h5>
                     <p class='card-text'>ID: $id</p>
@@ -31,9 +33,10 @@
                     <p class='card-text'>Cargo: $cargo</p>
                     <a href='#' class='btn btn-primary'>Legal!</a>
                 </div>
-            </div>";
-        
+            </div>";  
     
-}
+    }
+
+
 
 ?>
